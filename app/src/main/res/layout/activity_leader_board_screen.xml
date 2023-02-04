@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".LeaderBoard_screen"
     android:padding="10dp"
-    android:backgroundTint="#94A2F1"
+    android:backgroundTint="#ADB7F1"
     android:background="@color/purple_500">
 
     <androidx.recyclerview.widget.RecyclerView
