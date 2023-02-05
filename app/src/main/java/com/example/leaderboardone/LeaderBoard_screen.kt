@@ -33,7 +33,7 @@ class LeaderBoard_screen : AppCompatActivity() {
     }
     private fun EventChangeListener() {
         db = FirebaseFirestore.getInstance()
-        db.collection("COMPS")
+        db.collection("COMPS").orderBy("points",Query.Direction.DESCENDING)
             .addSnapshotListener(object : EventListener<QuerySnapshot> {
                 override fun onEvent(
                     value : QuerySnapshot?,
