@@ -12,11 +12,9 @@
         android:theme="@style/Theme.LeaderBoardOne"
         tools:targetApi="31">
         <activity
-            android:name=".LeaderBoard_screen"
-            android:exported="false" />
-        <activity
-            android:name=".Home_screen"
-            android:exported="false" />
+            android:name=".Navigation"
+            android:exported="false"
+            android:label="@string/title_activity_navigation" />
         <activity
             android:name=".Login_screen"
             android:exported="true" />

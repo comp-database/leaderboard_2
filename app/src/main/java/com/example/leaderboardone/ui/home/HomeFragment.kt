@@ -1,40 +1,49 @@
-package com.example.leaderboardone
+package com.example.leaderboardone.ui.home
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import com.example.leaderboardone.databinding.ActivityHomeScreenBinding
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import com.example.leaderboardone.Model.StudentDetails
+import com.example.leaderboardone.databinding.FragmentHomeBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
-import com.example.leaderboardone.Model.StudentDetails
-import com.google.firebase.firestore.*
 import com.google.firebase.firestore.ktx.toObject
+import com.google.firebase.ktx.Firebase
 
-class Home_screen : AppCompatActivity() {
+class HomeFragment : Fragment() {
 
-    lateinit var binding: ActivityHomeScreenBinding
+    private var _binding: FragmentHomeBinding? = null
+
     private lateinit var auth: FirebaseAuth
     private var db = Firebase.firestore
-//    lateinit var datalist: ArrayList<StudentDetails>
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    // This property is only valid between onCreateView and
+    // onDestroyView.
+    private val binding get() = _binding!!
 
-        super.onCreate(savedInstanceState)
-        binding = ActivityHomeScreenBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        val homeViewModel =
+            ViewModelProvider(this)[HomeViewModel::class.java]
+
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        val root: View = binding.root
+
+//        val textView: TextView = binding.textHome
+//        homeViewModel.text.observe(viewLifecycleOwner) {
+//            textView.text = it
+//        }
 
         auth = FirebaseAuth.getInstance()
         binding.emailText.text =auth.currentUser?.email
-        binding.LearderBoardBtn.setOnClickListener {
-            startActivity(Intent(this,LeaderBoard_screen::class.java))
-        }
-        binding.LogOutBtn.setOnClickListener {
-            auth.signOut()
-            startActivity(Intent(this,Login_screen::class.java))
-            finish()
-        }
         //Logic for data-display of Particular logged user
         val docRef = db.collection("COMPS")
         docRef.get()
@@ -56,5 +65,12 @@ class Home_screen : AppCompatActivity() {
             .addOnFailureListener { exception ->
                 Log.d("TAG", "get failed with ", exception)
             }
+
+        return root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.example.leaderboardone.databinding.ActivityLoginScreenBinding
+import com.example.leaderboardone.ui.dashboard.DashboardFragment
 import com.google.firebase.auth.FirebaseAuth
 
 class Login_screen : AppCompatActivity() {
@@ -24,7 +25,7 @@ class Login_screen : AppCompatActivity() {
             if (email.isNotEmpty() && pass.isNotEmpty()) {
                 auth.signInWithEmailAndPassword(email, pass).addOnCompleteListener {
                     if (it.isSuccessful) {
-                        val intent = Intent(this, Home_screen::class.java)
+                        val intent = Intent(this, Navigation::class.java)
                         intent.putExtra("Email",binding.email.text.toString())
                         startActivity(intent)
                     } else {
@@ -39,7 +40,7 @@ class Login_screen : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         if(auth.currentUser != null){
-            val intent = Intent(this, Home_screen::class.java)
+            val intent = Intent(this, Navigation::class.java)
             intent.putExtra("Email",binding.email.text.toString())
             startActivity(intent)
         }

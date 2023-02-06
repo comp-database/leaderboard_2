@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Home_screen"
+    tools:context=".Navigation"
     android:layout_margin="16dp"
     android:orientation="vertical">
 
@@ -34,16 +34,4 @@
         android:textSize="25sp"
         android:layout_margin="10dp"
         />
-    <Button
-        android:id="@+id/LearderBoardBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="List"
-        android:layout_margin="10dp"/>
-    <Button
-        android:id="@+id/LogOutBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Logout"
-        android:layout_margin="10dp"/>
 </LinearLayout>

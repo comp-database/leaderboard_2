@@ -31,7 +31,7 @@ class RvAdapter(private val dataset : ArrayList<StudentDetails>)
     }
 
     override fun getItemCount(): Int {
-        return dataset.size
+        return 10
     }
 
 }
