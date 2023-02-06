@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.example.leaderboardone.databinding.ActivityLoginScreenBinding
-import com.example.leaderboardone.ui.dashboard.DashboardFragment
 import com.google.firebase.auth.FirebaseAuth
 
 class Login_screen : AppCompatActivity() {
@@ -18,10 +17,13 @@ class Login_screen : AppCompatActivity() {
         setContentView(binding.root)
         // Firebase Instance
         auth = FirebaseAuth.getInstance()
+
+
         binding.loginBtn.setOnClickListener {
             val email = binding.email.text.toString()
             val pass = binding.password.text.toString()
             // Email/Password Login Logic
+
             if (email.isNotEmpty() && pass.isNotEmpty()) {
                 auth.signInWithEmailAndPassword(email, pass).addOnCompleteListener {
                     if (it.isSuccessful) {
@@ -36,6 +38,11 @@ class Login_screen : AppCompatActivity() {
                 Toast.makeText(this, "Empty Fields Are not Allowed !!", Toast.LENGTH_SHORT).show()
             }
         }
+
+        binding.btnForgotPass.setOnClickListener {
+            startActivity(Intent(this,Reset_Password::class.java))
+        }
+
     }
     override fun onStart() {
         super.onStart()

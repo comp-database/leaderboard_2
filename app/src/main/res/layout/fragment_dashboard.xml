@@ -15,5 +15,5 @@
         android:layout_height="match_parent"
         android:scrollbars="vertical"
         app:layoutManager="LinearLayoutManager"
-        tools:listitem="@layout/list_item"/>
+        tools:listitem="@layout/list_item" />
 </FrameLayout>
