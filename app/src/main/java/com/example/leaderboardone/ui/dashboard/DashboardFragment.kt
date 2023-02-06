@@ -1,7 +1,9 @@
 package com.example.leaderboardone.ui.dashboard
 
+import android.icu.lang.UCharacter.VerticalOrientation
 import android.os.Bundle
 import android.util.Log
+import android.util.Size
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +11,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.leaderboardone.Adapter.RvAdapter
 import com.example.leaderboardone.Model.StudentDetails
 import com.example.leaderboardone.databinding.FragmentDashboardBinding
@@ -48,8 +51,8 @@ class DashboardFragment : Fragment() {
 //        setContentView(binding.root)
 
         val recyclerView = binding.rv
-        recyclerView.layoutManager = LinearLayoutManager(this.context)
-        recyclerView.setHasFixedSize(true)
+        recyclerView.layoutManager = LinearLayoutManager(this.context,LinearLayoutManager.VERTICAL,false)
+//        recyclerView.setHasFixedSize(true)
         datalist = arrayListOf()
         adapterRc = RvAdapter(datalist)
         recyclerView.adapter = adapterRc
