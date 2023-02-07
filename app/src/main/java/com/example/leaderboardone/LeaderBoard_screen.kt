@@ -16,6 +16,7 @@ class LeaderBoard_screen : AppCompatActivity() {
     var db = Firebase.firestore
     lateinit var datalist: ArrayList<StudentDetails>
     lateinit var adapterRc :RvAdapter
+    lateinit var topTenlist : ArrayList<StudentDetails>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLeaderBoardScreenBinding.inflate(layoutInflater)
@@ -25,13 +26,15 @@ class LeaderBoard_screen : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
         datalist = arrayListOf()
-        adapterRc = RvAdapter(datalist)
+        topTenlist = arrayListOf()
+        adapterRc = RvAdapter(topTenlist)
         recyclerView.adapter = adapterRc
 
         Log.d("data ","${intent.getStringExtra("Email")}")
-        EventChangeListener()
+        EventChangeListenerAll()
+        EventChangeListenerTopTen()
     }
-    private fun EventChangeListener() {
+    private fun EventChangeListenerAll() {
         db = FirebaseFirestore.getInstance()
         db.collection("COMPS").orderBy("points",Query.Direction.DESCENDING)
             .addSnapshotListener(object : EventListener<QuerySnapshot> {
@@ -52,4 +55,27 @@ class LeaderBoard_screen : AppCompatActivity() {
                 }
             })
     }
+    // For Top Ten Students
+    private fun EventChangeListenerTopTen() {
+        db = FirebaseFirestore.getInstance()
+        db.collection("COMPS").orderBy("points",Query.Direction.DESCENDING).limit(10)
+            .addSnapshotListener(object : EventListener<QuerySnapshot> {
+                override fun onEvent(
+                    value : QuerySnapshot?,
+                    error : FirebaseFirestoreException?
+                ){
+                    if (error != null){
+                        Log.e("Firestore Error",error.message.toString())
+                        return
+                    }
+                    for(dc : DocumentChange in value?.documentChanges!!){
+                        if(dc.type == DocumentChange.Type.ADDED){
+                            topTenlist.add(dc.document.toObject(StudentDetails::class.java))
+                        }
+                    }
+                    adapterRc.notifyDataSetChanged()
+                }
+            })
+    }
+
 }
