@@ -23,7 +23,7 @@ class RvAdapter(private val dataset : ArrayList<StudentDetails>)
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        val item : StudentDetails = dataset.set(1,StudentDetails())
+        val item : StudentDetails = dataset[position]
         holder.nameTV.text = item.fullName
         holder.emailTV.text = item.collegeEmail
         holder.pointsTV.text = item.points.toString()

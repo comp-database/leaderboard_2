@@ -37,7 +37,7 @@ class DashboardFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val dashboardViewModel =
-            ViewModelProvider(this).get(DashboardViewModel::class.java)
+            ViewModelProvider(this)[DashboardViewModel::class.java]
 
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -52,7 +52,7 @@ class DashboardFragment : Fragment() {
 
         val recyclerView = binding.rv
         recyclerView.layoutManager = LinearLayoutManager(this.context,LinearLayoutManager.VERTICAL,false)
-//        recyclerView.setHasFixedSize(true)
+        recyclerView.setHasFixedSize(true)
         datalist = arrayListOf()
         adapterRc = RvAdapter(datalist)
         recyclerView.adapter = adapterRc
