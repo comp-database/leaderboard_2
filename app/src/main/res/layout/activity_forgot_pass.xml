@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Forgot_Pass">
+    tools:context=".Recovery.Forgot_Pass">
 
     <EditText
         android:id="@+id/ev_forgot_email"

@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.example.leaderboardone.Recovery.Reset_Password
 import com.example.leaderboardone.databinding.ActivityLoginScreenBinding
 import com.google.firebase.auth.FirebaseAuth
 
@@ -30,6 +31,7 @@ class Login_screen : AppCompatActivity() {
                         val intent = Intent(this, Navigation::class.java)
                         intent.putExtra("Email",binding.email.text.toString())
                         startActivity(intent)
+                        finishActivity(0)
                     } else {
                         Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
                     }
@@ -40,7 +42,7 @@ class Login_screen : AppCompatActivity() {
         }
 
         binding.btnForgotPass.setOnClickListener {
-            startActivity(Intent(this,Reset_Password::class.java))
+            startActivity(Intent(this, Reset_Password::class.java))
         }
 
     }
@@ -50,6 +52,7 @@ class Login_screen : AppCompatActivity() {
             val intent = Intent(this, Navigation::class.java)
             intent.putExtra("Email",binding.email.text.toString())
             startActivity(intent)
+            finish()
         }
     }
 }

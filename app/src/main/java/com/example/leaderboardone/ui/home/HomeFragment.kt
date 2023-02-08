@@ -1,24 +1,32 @@
 package com.example.leaderboardone.ui.home
 
-import android.content.Intent
+import android.R
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.example.leaderboardone.Login_screen
 import com.example.leaderboardone.Model.StudentDetails
+import com.example.leaderboardone.Navigation
 import com.example.leaderboardone.databinding.FragmentHomeBinding
+import com.google.api.MonitoredResourceDescriptor
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 
+
+
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
-
     private lateinit var auth: FirebaseAuth
     private var db = Firebase.firestore
 

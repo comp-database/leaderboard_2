@@ -65,7 +65,7 @@ class DashboardFragment : Fragment() {
     }
     private fun EventChangeListener() {
         db = FirebaseFirestore.getInstance()
-        db.collection("COMPS").orderBy("points",Query.Direction.DESCENDING)
+        db.collection("COMPS").orderBy("points",Query.Direction.DESCENDING).limit(10)
             .addSnapshotListener(object : EventListener<QuerySnapshot> {
                 override fun onEvent(
                     value : QuerySnapshot?,

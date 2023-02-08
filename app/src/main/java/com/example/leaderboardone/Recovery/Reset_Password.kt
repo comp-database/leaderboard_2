@@ -1,10 +1,12 @@
-package com.example.leaderboardone
+package com.example.leaderboardone.Recovery
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
 import android.widget.Toast
+import com.example.leaderboardone.Login_screen
+import com.example.leaderboardone.R
 import com.example.leaderboardone.databinding.ActivityResetPasswordBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -28,7 +30,7 @@ class Reset_Password : AppCompatActivity() {
                 auth.sendPasswordResetEmail(email).addOnCompleteListener {
                     if(it.isSuccessful){
                         Toast.makeText(this,"Check your Email",Toast.LENGTH_LONG).show()
-                        startActivity(Intent(this,Login_screen::class.java))
+                        startActivity(Intent(this, Login_screen::class.java))
                         finish()
                     }
                 }
