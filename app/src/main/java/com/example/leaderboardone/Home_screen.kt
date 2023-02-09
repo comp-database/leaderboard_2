@@ -1,6 +1,7 @@
 package com.example.leaderboardone
 
 import android.content.Intent
+import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -9,8 +10,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.example.leaderboardone.Model.StudentDetails
-import com.google.firebase.firestore.*
 import com.google.firebase.firestore.ktx.toObject
+import com.google.firebase.storage.FirebaseStorage
+import java.io.File
 
 class Home_screen : AppCompatActivity() {
 
@@ -35,6 +37,19 @@ class Home_screen : AppCompatActivity() {
             startActivity(Intent(this,Login_screen::class.java))
             finish()
         }
+        // Logic for Img and Link
+        val storageRefImg = FirebaseStorage.getInstance().reference.child("images/EventImg.png")
+        val localFileImg =  File.createTempFile("EventImg","jpg")
+        storageRefImg.getFile(localFileImg).addOnSuccessListener {
+            val bitmap = BitmapFactory.decodeFile(localFileImg.absolutePath)
+            binding.EventImage.setImageBitmap(bitmap)
+        }
+        binding.Form.setOnClickListener {
+            val intent = Intent(this,FormView_screen::class.java)
+            startActivity(intent)
+        }
+
+
         //Logic for data-display of Particular logged user
         val docRef = db.collection("COMPS")
         docRef.get()
