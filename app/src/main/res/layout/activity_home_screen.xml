@@ -46,4 +46,19 @@
         android:layout_height="wrap_content"
         android:text="Logout"
         android:layout_margin="10dp"/>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/Form"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="20dp"
+        android:elevation="10dp"
+        android:padding="8dp"
+        android:layout_margin="8dp">
+        <ImageView
+            android:layout_margin="8dp"
+            android:padding="10dp"
+            android:id="@+id/EventImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </androidx.cardview.widget.CardView>
 </LinearLayout>
