@@ -1,27 +1,23 @@
 package com.example.leaderboardone.ui.home
 
-import android.R
-import android.content.DialogInterface
+import android.content.Intent
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
-import com.example.leaderboardone.Login_screen
+import com.example.leaderboardone.FormView_screen
 import com.example.leaderboardone.Model.StudentDetails
-import com.example.leaderboardone.Navigation
 import com.example.leaderboardone.databinding.FragmentHomeBinding
-import com.google.api.MonitoredResourceDescriptor
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
-
+import com.google.firebase.storage.FirebaseStorage
+import java.io.File
 
 
 class HomeFragment : Fragment() {
@@ -63,6 +59,7 @@ class HomeFragment : Fragment() {
                         if (allDetails.collegeEmail.toString() == auth.currentUser?.email.toString()){
                             binding.pointText.text = allDetails.points.toString()
                             binding.nameText.text = allDetails.fullName.toString()
+                            binding.rank.text = allDetails.rank.toString()
                         }
                         Log.d("TAG","name data  ${allDetails.collegeEmail} ")
                     }
@@ -73,6 +70,18 @@ class HomeFragment : Fragment() {
             .addOnFailureListener { exception ->
                 Log.d("TAG", "get failed with ", exception)
             }
+
+        // Logic for Img and Link
+        val storageRefImg = FirebaseStorage.getInstance().reference.child("images/EventImg.png")
+        val localFileImg =  File.createTempFile("EventImg","jpg")
+        storageRefImg.getFile(localFileImg).addOnSuccessListener {
+            val bitmap = BitmapFactory.decodeFile(localFileImg.absolutePath)
+            binding.EventImage.setImageBitmap(bitmap)
+        }
+        binding.Form.setOnClickListener {
+            val intent = Intent(this.context,FormView_screen::class.java)
+            startActivity(intent)
+        }
 
         return root
     }

@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.leaderboardone.Recovery.Reset_Password
 import com.example.leaderboardone.Login_screen
+import com.example.leaderboardone.R
 import com.example.leaderboardone.databinding.FragmentNotificationsBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -91,7 +92,8 @@ class NotificationsFragment : Fragment() {
         }
 
         binding.btnUpload.setOnClickListener {
-            uploadImageToFirebaseStorage()
+//            uploadImageToFirebaseStorage()
+//            binding.profilePic.setBackgroundResour
         }
 
 //        binding.btnUpload.setOnClickListener {

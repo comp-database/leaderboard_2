@@ -22,23 +22,47 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:layout_weight="1">
+            android:id="@+id/expand">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/rank"
                 android:layout_margin="5dp"
                 android:textSize="20sp"
-                android:textStyle="italic"
-                android:text="Name:  "/>
+                android:textStyle="bold"
+                android:text="Rank "/>
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/name"
                 android:layout_margin="5dp"
                 android:textSize="20sp"
                 android:textStyle="bold"
+                android:text="Name "/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/points"
+                android:layout_margin="5dp"
+                android:textSize="20sp"
+                android:textStyle="bold"
                 android:text="one"/>
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_weight="1">
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/expanded_layout">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -57,7 +81,6 @@
                 android:id="@+id/email"
                 android:layout_margin="5dp"
                 android:textSize="20sp"
-                android:textStyle="bold"
                 android:text="one"/>
         </LinearLayout>
         <LinearLayout
@@ -78,30 +101,10 @@
                 android:id="@+id/id"
                 android:layout_margin="5dp"
                 android:textSize="20sp"
-                android:textStyle="bold"
                 android:text="one"/>
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:layout_weight="1">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:textSize="20sp"
-                android:textStyle="italic"
-                android:text="Points:  "/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/points"
-                android:layout_margin="5dp"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:text="one"/>
         </LinearLayout>
+
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

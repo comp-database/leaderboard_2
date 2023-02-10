@@ -1,5 +1,7 @@
 package com.example.leaderboardone.Model
 
+import android.service.autofill.VisibilitySetterAction
+
 data class StudentDetails(
     var collegeEmail : String? = null,
     var fullName : String? = null,
@@ -7,7 +9,9 @@ data class StudentDetails(
     val contactNo : Long? = null,
     val password : String? = null,
     val points : Int? = null,
-    val interestedInOrganiserParticipant : String? = null
+    val interestedInOrganiserParticipant : String? = null,
+    var visibility : Boolean = false,
+    val rank : Int? = null
 )
 //collegeEmail
 //"vu1f2122010@pvppcoe.ac.in"
