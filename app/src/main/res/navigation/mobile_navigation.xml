@@ -17,17 +17,28 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.example.leaderboardone.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" >
+        android:name="com.example.leaderboardone.ui.leaderboard.LeaderBoardFragment"
+        android:label="Leader Board"
+        tools:layout="@layout/fragment_leaderboard" >
         <action
-            android:id="@+id/action_navigation_dashboard_to_navigation_notifications"
+            android:id="@+id/action_navigation_dashboard_to_event_list"
+            app:destination="@id/event_list" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/event_list"
+        android:name="com.example.leaderboardone.ui.eventlist.EventFragment"
+        android:label="Events"
+        tools:layout="@layout/fragment_event"
+        >
+        <action
+            android:id="@+id/action_event_list_to_navigation_notifications"
             app:destination="@id/navigation_notifications" />
     </fragment>
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.example.leaderboardone.ui.notifications.NotificationsFragment"
+        android:name="com.example.leaderboardone.ui.profile.NotificationsFragment"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_profile" />
 </navigation>

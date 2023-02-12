@@ -1,27 +1,23 @@
-package com.example.leaderboardone.ui.dashboard
+package com.example.leaderboardone.ui.leaderboard
 
-import android.icu.lang.UCharacter.VerticalOrientation
 import android.os.Bundle
 import android.util.Log
-import android.util.Size
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.leaderboardone.Adapter.RvAdapter
 import com.example.leaderboardone.Model.StudentDetails
-import com.example.leaderboardone.databinding.FragmentDashboardBinding
+import com.example.leaderboardone.databinding.FragmentLeaderboardBinding
 import com.google.firebase.firestore.*
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-class DashboardFragment : Fragment() {
+class LeaderBoardFragment : Fragment() {
 
-    private var _binding: FragmentDashboardBinding? = null
+    private var _binding: FragmentLeaderboardBinding? = null
 
     private var db = Firebase.firestore
     lateinit var datalist: ArrayList<StudentDetails>
@@ -36,10 +32,10 @@ class DashboardFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val dashboardViewModel =
-            ViewModelProvider(this)[DashboardViewModel::class.java]
+        val leaderBoardViewModel =
+            ViewModelProvider(this)[LeaderBoardViewModel::class.java]
 
-        _binding = FragmentDashboardBinding.inflate(inflater, container, false)
+        _binding = FragmentLeaderboardBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
 //        val textView: TextView = binding.textDashboard

@@ -1,13 +1,16 @@
 package com.example.leaderboardone
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Message
 import android.util.Log
 import android.view.View
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import com.example.leaderboardone.Model.Url
+import com.example.leaderboardone.ui.forms.Url
+import com.example.leaderboardone.ui.home.HomeFragment
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase

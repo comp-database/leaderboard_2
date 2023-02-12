@@ -12,8 +12,14 @@
         android:title="Leader Board" />
 
     <item
+        android:id="@+id/event_list"
+        android:icon="@drawable/launch"
+        android:title="Event "/>
+
+    <item
         android:id="@+id/navigation_notifications"
         android:icon="@drawable/profile"
         android:title="Profile" />
+
 
 </menu>
