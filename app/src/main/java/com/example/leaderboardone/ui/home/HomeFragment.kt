@@ -2,6 +2,7 @@ package com.example.leaderboardone.ui.home
 
 import android.content.Intent
 import android.graphics.BitmapFactory
+import android.icu.util.Calendar
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -41,15 +42,11 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-//        val textView: TextView = binding.textHome
-//        homeViewModel.text.observe(viewLifecycleOwner) {
-//            textView.text = it
-//        }
-
         auth = FirebaseAuth.getInstance()
         binding.emailText.text =auth.currentUser?.email
         //Logic for data-display of Particular logged user
         val docRef = db.collection("COMPS")
+        getGreetingMessage()
         docRef.get()
             .addOnSuccessListener { document ->
                 if (document != null) {
@@ -72,18 +69,30 @@ class HomeFragment : Fragment() {
             }
 
         // Logic for Img and Link
-        val storageRefImg = FirebaseStorage.getInstance().reference.child("images/EventImg.png")
-        val localFileImg =  File.createTempFile("EventImg","jpg")
-        storageRefImg.getFile(localFileImg).addOnSuccessListener {
-            val bitmap = BitmapFactory.decodeFile(localFileImg.absolutePath)
-            binding.EventImage.setImageBitmap(bitmap)
-        }
-        binding.Form.setOnClickListener {
-            val intent = Intent(this.context,FormView_screen::class.java)
-            startActivity(intent)
-        }
-
+//        val storageRefImg = FirebaseStorage.getInstance().reference.child("images/EventImg.png")
+//        val localFileImg =  File.createTempFile("EventImg","jpg")
+//        storageRefImg.getFile(localFileImg).addOnSuccessListener {
+//            val bitmap = BitmapFactory.decodeFile(localFileImg.absolutePath)
+//            binding.EventImage.setImageBitmap(bitmap)
+//        }
+//        binding.Form.setOnClickListener {
+//            val intent = Intent(this.context,FormView_screen::class.java)
+//            startActivity(intent)
+//        }
         return root
+    }
+
+    fun getGreetingMessage(): Any {
+        val c = Calendar.getInstance()
+        val timeOfDay = c.get(Calendar.HOUR_OF_DAY)
+
+        return when (timeOfDay) {
+            in 0..11 -> binding.greetingMessage.text = "Good morning"
+            in 12..15 -> binding.greetingMessage.text = "Good afternoon"
+            in 16..23 -> binding.greetingMessage.text = "Good evening"
+//            in 21..23 -> binding.greetingMessage.text = "Good Night"
+            else -> "Hello"
+        }
     }
 
     override fun onDestroyView() {

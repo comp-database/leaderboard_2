@@ -3,9 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-
     <uses-permission-sdk-23 android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -33,24 +31,37 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/purple_700" />
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
 
         <activity
-            android:name=".Recovery.Forgot_Pass"
-            android:exported="false" />
+            android:name=".ui.Recovery.Forgot_Pass"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Login_Theme"/>
         <activity
-            android:name=".Recovery.Reset_Password"
-            android:exported="false" />
+            android:name=".ui.Recovery.Reset_Password"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Login_Theme"/>
         <activity
             android:name=".Navigation"
             android:exported="false"
             android:label="@string/title_activity_navigation"
-            android:noHistory="true" />
+            android:noHistory="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Other_Theme"/>
         <activity
             android:name=".Login_screen"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Login_Theme"/>
         <activity
             android:name=".Splash_screen"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Login_Theme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -60,7 +71,8 @@
 
         <service
             android:name=".MyFirebaseMessagingService"
-            android:exported="false">
+            android:exported="false"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>

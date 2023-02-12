@@ -7,7 +7,7 @@ import android.util.Log
 import android.view.View
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import com.example.leaderboardone.Model.Url
+import com.example.leaderboardone.ui.forms.Url
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase

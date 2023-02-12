@@ -1,5 +1,6 @@
 package com.example.leaderboardone
 
+import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -16,6 +17,7 @@ import java.nio.file.attribute.AclEntry.Builder
 const val channelId = "NotificationChannel"
 const val channelName = "com.example.leaderboardone"
 
+@SuppressLint("MissingFirebaseInstanceTokenRefresh")
 class MyFirebaseMessagingService : FirebaseMessagingService() {
 
     @RequiresApi(Build.VERSION_CODES.S)

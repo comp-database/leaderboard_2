@@ -1,12 +1,8 @@
-package com.example.leaderboardone.ui.notifications
+package com.example.leaderboardone.ui.profile
 
-import android.app.Activity
-import android.content.ContentResolver
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,10 +11,9 @@ import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.leaderboardone.Recovery.Reset_Password
+import com.example.leaderboardone.ui.Recovery.Reset_Password
 import com.example.leaderboardone.Login_screen
-import com.example.leaderboardone.R
-import com.example.leaderboardone.databinding.FragmentNotificationsBinding
+import com.example.leaderboardone.databinding.FragmentProfileBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
@@ -29,7 +24,7 @@ import java.util.UUID
 
 class NotificationsFragment : Fragment() {
 
-    private var _binding: FragmentNotificationsBinding? = null
+    private var _binding: FragmentProfileBinding? = null
 
     private lateinit var auth: FirebaseAuth
     private var storageRef = Firebase.storage
@@ -45,10 +40,10 @@ class NotificationsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val notificationsViewModel =
-            ViewModelProvider(this)[NotificationsViewModel::class.java]
+        val profileViewModel =
+            ViewModelProvider(this)[ProfileViewModel::class.java]
 
-        _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
+        _binding = FragmentProfileBinding.inflate(inflater, container, false)
         val root: View = binding.root
         auth = FirebaseAuth.getInstance()
         storageRef = FirebaseStorage.getInstance()

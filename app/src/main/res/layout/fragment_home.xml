@@ -5,37 +5,41 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Navigation"
-    android:layout_margin="16dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/rectangle_blank">
 
     <TextView
         android:id="@+id/emailText"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:background="@drawable/round_edges"
         android:textSize="25sp"
-        android:layout_margin="10dp"
         android:visibility="gone"
         />
 
     <TextView
+        android:id="@+id/greeting_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="40sp"
-        android:layout_margin="10dp"
-        android:text="Welcome,"
-        android:padding="5dp"
-        />
+        android:fontFamily="@font/poppins"
+        android:text="Welcome"
+        android:layout_marginTop="50dp"
+        android:textSize="28sp"
+        android:padding="1dp"
+        android:layout_marginStart="20dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"/>
 
     <TextView
-        android:id="@+id/nameText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Name"
-        android:textSize="30sp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        />
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/poppins"
+        android:padding="2dp"
+        android:text="Your score"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="28sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/pointText"
@@ -44,32 +48,127 @@
         android:layout_gravity="center"
         android:layout_margin="10dp"
         android:background="@drawable/points_text"
-        android:hint="00"
+        android:elevation="10dp"
         android:paddingStart="5dp"
         android:paddingEnd="5dp"
+        android:text="00"
+        android:gravity="center"
         android:textAlignment="center"
+        android:textColor="@color/black"
         android:textSize="145sp" />
 
-    <TextView
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="30sp"
-        android:text="Points"
-        android:textAlignment="center"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        />
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:padding="5dp"
+        android:background="@color/back_dark"
+        app:cardCornerRadius="8dp">
 
-    <TextView
-        android:id="@+id/rank"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Your Rank is : "
-        android:background="@drawable/round_edges"
-        android:gravity="center"
-        android:textSize="32sp"
-        android:layout_marginTop="30dp"
-        />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/back_dark"
+            android:padding="5dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/rank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="100"
+                android:fontFamily="@font/poppins"
+                android:textSize="32sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tv_th"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text=" th "
+                android:fontFamily="@font/poppins"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins"
+                android:gravity="center"
+                android:text=" rank "
+                android:textSize="32sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
+        </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/poppins"
+                    android:padding="1dp"
+                    android:text="Name :  "
+                    android:textColor="@color/recycler_view_text"
+                    android:textSize="25sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/nameText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins"
+                    android:hint="FULL NAME"
+                    android:padding="1dp"
+                    android:textColor="@color/recycler_view_text"
+                    android:textSize="25sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/poppins"
+                    android:padding="1dp"
+                    android:text="Class :  "
+                    android:textColor="@color/recycler_view_text"
+                    android:textSize="25sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins"
+                    android:hint="SE COMPS A"
+                    android:padding="1dp"
+                    android:textColor="@color/recycler_view_text"
+                    android:textSize="25sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/Form"
@@ -79,12 +178,13 @@
         android:elevation="10dp"
         android:padding="8dp"
         android:layout_margin="8dp">
+
         <ImageView
-            android:layout_margin="8dp"
-            android:padding="10dp"
             android:id="@+id/EventImage"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:padding="10dp" />
     </androidx.cardview.widget.CardView>
 
 </LinearLayout>

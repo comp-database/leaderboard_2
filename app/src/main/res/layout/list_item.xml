@@ -1,53 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="10dp"
-    android:elevation="20dp"
-    app:cardCornerRadius="20dp">
+    android:layout_marginStart="30dp"
+    android:layout_marginEnd="30dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    android:elevation="50dp"
+    app:cardCornerRadius="10dp">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="10dp">
-<!--        var email : String? = null,
-    var name : String? = null,
-    val id : String? = null,
-    val ContactNo : Int? = null,
-    val password : String? = null,
-    val points : Int? = null,
-    val Interest : String? = null-->
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:background="@color/back_dark">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
             android:id="@+id/expand">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/rank"
-                android:layout_margin="5dp"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:text="Rank "/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/name"
-                android:layout_margin="5dp"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:text="Name "/>
 
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/rank"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:fontFamily="@font/poppins"
+                android:text="10"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/points"
-                android:layout_margin="5dp"
-                android:textSize="20sp"
+                android:fontFamily="@font/poppins"
+                android:text=".  "
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Full Name "
+                android:textColor="@color/black"
+                android:textSize="25sp"
                 android:textStyle="bold"
-                android:text="one"/>
+                android:fontFamily="@font/poppins" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/points"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:fontFamily="@font/poppins"
+                    android:text="1000"
+                    android:textColor="@color/teal_700"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/imageView2"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="end"
+                    android:src="@drawable/baseline_keyboard_arrow_down_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -58,8 +98,8 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:id="@+id/expanded_layout">
 
@@ -71,38 +111,41 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
                 android:textSize="20sp"
                 android:textStyle="italic"
-                android:text="Email:  "/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/email"
-                android:layout_margin="5dp"
-                android:textSize="20sp"
-                android:text="one"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:layout_weight="1">
+                android:text="ID No:  "
+                android:fontFamily="@font/poppins"
+                android:textColor="@color/recycler_view_text"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:textSize="20sp"
-                android:textStyle="italic"
-                android:text="ID No.:  "/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:id="@+id/id"
-                android:layout_margin="5dp"
                 android:textSize="20sp"
-                android:text="one"/>
+                android:text="one"
+                android:fontFamily="@font/poppins"
+                android:textColor="@color/recycler_view_text"/>
         </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textStyle="italic"
+                    android:text="Class:  "
+                    android:fontFamily="@font/poppins"
+                    android:textColor="@color/recycler_view_text"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="SE COMPS A"
+                    android:fontFamily="@font/poppins"
+                    android:textColor="@color/recycler_view_text"/>
+            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>
