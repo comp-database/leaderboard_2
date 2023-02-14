@@ -11,6 +11,11 @@
         android:icon="@drawable/leader_board"
         android:title="Leader Board" />
 
+<!--    <item-->
+<!--        android:id="@+id/event_list"-->
+<!--        android:icon="@drawable/launch"-->
+<!--        android:title="Events"/>-->
+
     <item
         android:id="@+id/event_list"
         android:icon="@drawable/launch"
