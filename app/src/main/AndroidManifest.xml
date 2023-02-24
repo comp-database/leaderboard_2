@@ -49,7 +49,6 @@
             android:name=".Navigation"
             android:exported="false"
             android:label="@string/title_activity_navigation"
-            android:noHistory="true"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Other_Theme"/>
         <activity

@@ -11,19 +11,14 @@
         android:icon="@drawable/leader_board"
         android:title="Leader Board" />
 
-<!--    <item-->
-<!--        android:id="@+id/event_list"-->
-<!--        android:icon="@drawable/launch"-->
-<!--        android:title="Events"/>-->
-
     <item
         android:id="@+id/event_list"
-        android:icon="@drawable/launch"
+        android:icon="@drawable/events_logo"
         android:title="Event "/>
 
     <item
         android:id="@+id/navigation_notifications"
-        android:icon="@drawable/profile"
+        android:icon="@drawable/profile_new"
         android:title="Profile" />
 
 

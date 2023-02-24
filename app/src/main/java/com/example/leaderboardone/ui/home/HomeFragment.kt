@@ -71,11 +71,10 @@ class HomeFragment : Fragment() {
         return root
     }
 
-    fun getGreetingMessage(): Any {
+    private fun getGreetingMessage(): Any {
         val c = Calendar.getInstance()
-        val timeOfDay = c.get(Calendar.HOUR_OF_DAY)
 
-        return when (timeOfDay) {
+        return when (c.get(Calendar.HOUR_OF_DAY)) {
             in 0..11 -> binding.greetingMessage.text = "Good morning"
             in 12..15 -> binding.greetingMessage.text = "Good afternoon"
             in 16..23 -> binding.greetingMessage.text = "Good evening"

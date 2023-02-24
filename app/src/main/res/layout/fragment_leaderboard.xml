@@ -10,20 +10,20 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
         android:fontFamily="@font/poppins"
         android:text="Leader Board"
-        android:layout_marginTop="50dp"
-        android:textSize="32sp"
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:textStyle="bold"/>
+        android:textSize="32sp"
+        android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="110dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="60dp"
         android:scrollbars="vertical"
         app:layoutManager="LinearLayoutManager"
         tools:listitem="@layout/list_item" />

@@ -1,13 +1,17 @@
 package com.example.leaderboardone
 
+import android.content.Intent
 import android.os.Bundle
+import androidx.activity.setViewTreeOnBackPressedDispatcherOwner
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.leaderboardone.databinding.ActivityNavigationBinding
+import com.example.leaderboardone.ui.Recovery.Reset_Password
 
 class Navigation : AppCompatActivity() {
 
@@ -20,7 +24,6 @@ class Navigation : AppCompatActivity() {
         setContentView(binding.root)
 
         val navView: BottomNavigationView = binding.navView
-
         val navController = findNavController(R.id.nav_host_fragment_activity_navigation)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.

@@ -7,9 +7,13 @@ import android.os.Bundle
 import android.util.Patterns
 import android.view.View
 import android.widget.Toast
+import android.window.OnBackInvokedDispatcher
+import androidx.activity.OnBackPressedCallback
 import com.example.leaderboardone.Login_screen
+import com.example.leaderboardone.Navigation
 import com.example.leaderboardone.R
 import com.example.leaderboardone.databinding.ActivityResetPasswordBinding
+import com.example.leaderboardone.ui.home.HomeFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -17,6 +21,7 @@ import com.google.firebase.ktx.Firebase
 class Reset_Password : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var binding: ActivityResetPasswordBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reset_password)

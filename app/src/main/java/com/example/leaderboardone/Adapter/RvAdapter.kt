@@ -40,11 +40,9 @@ class RvAdapter(private val dataset : ArrayList<StudentDetails>)
         holder.expand.visibility = if(isVisible) View.VISIBLE else View.GONE
 
         holder.expandView.setOnClickListener{
-
             item.visibility = !item.visibility
             notifyItemChanged(position)
         }
-
     }
 
     override fun getItemCount(): Int {
