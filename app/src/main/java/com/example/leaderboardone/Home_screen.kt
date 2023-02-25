@@ -2,15 +2,15 @@ package com.example.leaderboardone
 
 import android.content.Intent
 import android.graphics.BitmapFactory
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
+import com.example.leaderboardone.Model.StudentDetails
 import com.example.leaderboardone.databinding.ActivityHomeScreenBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
-import com.example.leaderboardone.Model.StudentDetails
 import com.google.firebase.firestore.ktx.toObject
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import java.io.File
 
@@ -27,6 +27,9 @@ class Home_screen : AppCompatActivity() {
         binding = ActivityHomeScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.UpdateProfileImg.setOnClickListener {
+            startActivity(Intent(this,Profile_screen::class.java))
+        }
         auth = FirebaseAuth.getInstance()
         binding.emailText.text =auth.currentUser?.email
         binding.LearderBoardBtn.setOnClickListener {
