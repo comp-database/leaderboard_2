@@ -31,7 +31,7 @@ class FormView_screen : AppCompatActivity() {
                 if (document != null) {
                     for (all in document){
                         val allDetails = all.toObject<Url>()
-                        var UrlString = allDetails.EVENT_FORM.toString()
+                        val UrlString = allDetails.EVENT_FORM.toString()
                         val myWebView: WebView = findViewById(R.id.webView)
                         myWebView.settings.loadsImagesAutomatically = true
                         myWebView.settings.javaScriptEnabled = true

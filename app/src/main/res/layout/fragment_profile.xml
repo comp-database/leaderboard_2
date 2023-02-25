@@ -20,6 +20,7 @@
             android:layout_marginTop="50dp"
             android:fontFamily="@font/poppins"
             android:text="Profile"
+            android:layout_gravity="center"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="32sp"
@@ -30,7 +31,7 @@
             android:layout_width="160dp"
             android:layout_height="160dp"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:elevation="3dp"
             android:src="@drawable/profile" />
 
@@ -48,7 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp">
 
@@ -249,6 +250,14 @@
                     android:textColor="@color/black"/>
             </LinearLayout>
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#e9ecef"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"/>
+
         </LinearLayout>
 
         <LinearLayout
@@ -256,7 +265,8 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="12dp"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             android:layout_marginTop="10dp"
             android:id="@+id/reset_pass">
 
@@ -267,27 +277,62 @@
                 android:layout_marginEnd="16dp"/>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="220dp"
+            android:layout_height="match_parent"
             android:text="Reset Password"
-            android:textSize="24sp"
-            android:textColor="@color/link"
-            android:layout_marginEnd="20dp"/>
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_marginEnd="24dp"/>
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/baseline_keyboard_arrow_right_24"
+                android:layout_marginEnd="8dp"
+                android:layout_gravity="end" />
 
         </LinearLayout>
 
-
-        <Button
-            android:id="@+id/LogOutBtn"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:backgroundTint="@color/blue"
-            android:text="Logout"
-            android:textColor="@color/black"
-            android:elevation="5dp"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="20dp"
-            android:layout_marginBottom="60dp"/>
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="80dp"
+            android:background="@drawable/text_round_edges"
+            android:elevation="5dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/LogOutBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="80dp"
+                android:layout_marginEnd="24dp"
+                android:fontFamily="@font/poppins"
+                android:gravity="center"
+                android:text="Log out"
+                android:textAlignment="center"
+                android:textColor="@color/blue"
+                android:textSize="24sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:src="@drawable/logout_logo"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
+        </LinearLayout>
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/loading_animation_profile"

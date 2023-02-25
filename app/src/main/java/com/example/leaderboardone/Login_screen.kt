@@ -18,7 +18,7 @@ import kotlin.time.times
 import kotlin.time.toDuration
 
 class Login_screen : AppCompatActivity() {
-    lateinit var binding: ActivityLoginScreenBinding
+    private lateinit var binding: ActivityLoginScreenBinding
     private lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
