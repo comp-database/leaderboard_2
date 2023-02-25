@@ -1,12 +1,15 @@
 package com.example.leaderboardone.ui.profile
 
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.ActivityResultCallback
@@ -32,6 +35,7 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
+import java.io.File
 import java.util.UUID
 
 class NotificationsFragment : Fragment() {
@@ -40,6 +44,9 @@ class NotificationsFragment : Fragment() {
 
     private lateinit var auth: FirebaseAuth
     private var db = Firebase.firestore
+    private lateinit var image: ImageView
+    private lateinit var storageReference: StorageReference
+    lateinit var imagePath: String
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -58,21 +65,21 @@ class NotificationsFragment : Fragment() {
         auth = FirebaseAuth.getInstance()
 
         auth = FirebaseAuth.getInstance()
-        binding.emailProfile.text =auth.currentUser?.email
+        binding.emailProfile.text = auth.currentUser?.email
         //Logic for data-display of Particular logged user
         val docRef = db.collection("COMPS")
         docRef.get()
             .addOnSuccessListener { document ->
                 if (document != null) {
-                    for (all in document){
+                    for (all in document) {
                         val allDetails = all.toObject<StudentDetails>()
                         // review in name
-                        if (allDetails.collegeEmail.toString() == auth.currentUser?.email.toString()){
+                        if (allDetails.collegeEmail.toString() == auth.currentUser?.email.toString()) {
                             binding.nameProfile.text = allDetails.fullName.toString()
                             binding.rollProfile.text = allDetails.idNumber.toString()
                             binding.phoneProfile.text = allDetails.contactNo.toString()
                         }
-                        Log.d("TAG","name data  ${allDetails.collegeEmail} ")
+                        Log.d("TAG", "name data  ${allDetails.collegeEmail} ")
                     }
                 } else {
                     Log.d("TAG", "No such document")
@@ -92,7 +99,52 @@ class NotificationsFragment : Fragment() {
             auth.signOut()
             startActivity(Intent(this.context, Login_screen::class.java))
         }
+
+        auth = FirebaseAuth.getInstance()
+        // updated photo display
+        binding.btnUpload.setOnClickListener {
+            image = binding.profilePicFirebase
+            uploadImage(image)
+        }
+
+        // image load form selected image via Firebase
+        val storageRefImg = FirebaseStorage.getInstance().reference.child(auth.currentUser?.email.toString())
+        val localFileImg = File.createTempFile(auth.currentUser?.email.toString(), "jpg")
+        storageRefImg.getFile(localFileImg).addOnSuccessListener {
+            val bitmap = BitmapFactory.decodeFile(localFileImg.absolutePath)
+            binding.profilePicFirebase.setImageBitmap(bitmap)
+        }
         return root
+    }
+
+    private fun uploadImage(imgProfile: ImageView) {
+        val intent = Intent()
+        intent.action = Intent.ACTION_GET_CONTENT
+        intent.type = "image/*"
+        startActivityForResult(intent, 1)
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 1) {
+            image.setImageURI(data?.data)
+            uploadImagetoFB(data?.data!!)
+        }
+    }
+
+    // upload image
+    private fun uploadImagetoFB(imageUri: Uri) {
+        storageReference = FirebaseStorage.getInstance().reference
+        storageReference.child(auth.currentUser?.email.toString()).putFile(imageUri)
+            .addOnSuccessListener { taskSnapshot ->
+                val task = taskSnapshot.storage.downloadUrl
+                task.addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        imagePath = it.result.toString()
+                    }
+                }
+            }
     }
 
     override fun onDestroyView() {

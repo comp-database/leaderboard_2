@@ -27,7 +27,7 @@
             android:textStyle="bold" />
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profile_pic"
+            android:id="@+id/profile_pic_firebase"
             android:layout_width="160dp"
             android:layout_height="160dp"
             android:layout_gravity="center"
@@ -36,7 +36,7 @@
             android:src="@drawable/profile" />
 
         <TextView
-            android:id="@+id/btn_browse"
+            android:id="@+id/btn_upload"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Update photo"
