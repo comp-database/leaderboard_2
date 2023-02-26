@@ -9,10 +9,10 @@ data class StudentDetails(
     var lastName : String? = null,
     val idNumber : String? = null,
     val contactNo : Long? = null,
-    val password : String? = null,
     val points : Int? = null,
     var visibility : Boolean = false,
-    val rank : Int? = null
+    val rank : Int? = null,
+    var div : String? = null
 )
 //collegeEmail
 //"vu1f2122010@pvppcoe.ac.in"

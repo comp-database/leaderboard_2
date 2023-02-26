@@ -21,6 +21,7 @@ class RvAdapter(private val dataset : ArrayList<StudentDetails>)
         val rank : TextView = view.findViewById(R.id.rank)
         val expand : LinearLayout = view.findViewById(R.id.expanded_layout)
         val expandView : LinearLayout = view.findViewById(R.id.expand)
+        val div : TextView = view.findViewById(R.id.tv_div_rv)
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val adapterLayout = LayoutInflater.from(parent.context)
@@ -35,6 +36,7 @@ class RvAdapter(private val dataset : ArrayList<StudentDetails>)
         holder.pointsTV.text = item.points.toString()
         holder.id.text = item.idNumber
         holder.rank.text = (position+1).toString()
+        holder.div.text = item.div.toString()
 
         val isVisible : Boolean = item.visibility
         holder.expand.visibility = if(isVisible) View.VISIBLE else View.GONE

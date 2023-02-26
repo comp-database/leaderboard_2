@@ -1,146 +1,177 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context=".ui.profile.NotificationsFragment"
-    android:background="@drawable/rectangle_blank"
-    android:fillViewport="true"
-    android:scrollbars="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/rectangle_blank">
 
-    <LinearLayout
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/poppins"
+        android:text="Profile"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="32sp"
+        android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:fontFamily="@font/poppins"
-            android:text="Profile"
-            android:layout_gravity="center"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="32sp"
-            android:textStyle="bold" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_pic_firebase"
             android:layout_width="160dp"
             android:layout_height="160dp"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:elevation="3dp"
-            android:src="@drawable/profile" />
+            android:elevation="8dp"
+            android:padding="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
-        <TextView
-            android:id="@+id/btn_upload"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Update photo"
-            android:textAlignment="center"
-            android:textColor="@color/link"
-            android:textSize="14sp"
-            android:layout_marginTop="10dp"/>
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/profile_picture_loading_animation"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            android:visibility="visible"
+            app:lottie_rawRes="@raw/circular_loading_animation_2" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/btn_upload"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Update photo"
+        android:textAlignment="center"
+        android:textColor="@color/link"
+        android:textSize="14sp"
+        android:layout_marginTop="10dp"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fillViewport="true"
+        android:orientation="vertical"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp">
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="12dp">
-
-                <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:src="@drawable/baseline_person_24"
-                    android:layout_marginEnd="16dp"
-                    />
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="horizontal"
+                    android:padding="12dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:fontFamily="@font/poppins"
-                        android:text="Name  "
-                        android:textColor="@color/recycler_view_text"
-                        android:textSize="15sp" />
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginEnd="16dp"
+                        android:src="@drawable/baseline_person_24" />
 
-                    <TextView
-                        android:id="@+id/name_profile"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins"
-                        android:text="Full Name "
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/poppins"
+                            android:text="Name  "
+                            android:textColor="@color/recycler_view_text"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/name_profile"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            android:text="Full Name "
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
+                    </LinearLayout>
                 </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:layout_weight="1">
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:layout_weight="1"
-                android:layout_marginTop="10dp"
-                android:padding="12dp">
-
-                <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:src="@drawable/baseline_library_books_24"
-                    android:layout_marginEnd="16dp"
-                    />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins"
-                    android:text="Class  "
-                    android:textColor="@color/recycler_view_text"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:text="SE COMPS A"
-                    android:fontFamily="@font/poppins"
-                    android:textColor="@color/black"/>
-            </LinearLayout>
-            </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal"
                     android:layout_weight="1"
+                    android:orientation="horizontal"></LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:padding="12dp">
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginEnd="16dp"
+                        android:src="@drawable/baseline_library_books_24" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            android:text="Class  "
+                            android:textColor="@color/recycler_view_text"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/tv_div_profile"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            android:text="SE COMPS A"
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
                     android:padding="12dp">
 
                     <ImageView
@@ -153,197 +184,189 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:textSize="15sp"
-                        android:text="ID No.  "
-                        android:fontFamily="@font/poppins"
-                        android:textColor="@color/recycler_view_text"/>
 
-                    <TextView
-                        android:id="@+id/roll_profile"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:textSize="18sp"
-                        android:text="one"
-                        android:fontFamily="@font/poppins"
-                        android:textColor="@color/black"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/poppins"
+                            android:text="ID No.  "
+                            android:textColor="@color/recycler_view_text"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/roll_profile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/poppins"
+                            android:text="one"
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
+                    </LinearLayout>
                 </LinearLayout>
-                </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:layout_weight="1"
-                android:layout_marginTop="10dp"
-                android:padding="12dp"
-                >
-
-                <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:src="@drawable/baseline_email_24"
-                    android:layout_marginEnd="16dp"
-                    />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textSize="15sp"
-                    android:text="Email  "
-                    android:fontFamily="@font/poppins"
-                    android:textColor="@color/recycler_view_text"/>
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:padding="12dp">
 
-                <TextView
-                    android:id="@+id/email_profile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:textSize="18sp"
-                    android:text="email"
-                    android:fontFamily="@font/poppins"
-                    android:textColor="@color/black"/>
-            </LinearLayout>
-            </LinearLayout>
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginEnd="16dp"
+                        android:src="@drawable/baseline_email_24" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:layout_weight="1"
-                android:padding="12dp"
-                android:layout_marginTop="10dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
-                <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:src="@drawable/baseline_local_phone_24"
-                    android:layout_marginEnd="16dp"
-                    />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/poppins"
+                            android:text="Email  "
+                            android:textColor="@color/recycler_view_text"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/email_profile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/poppins"
+                            android:text="email"
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textSize="15sp"
-                    android:text="Phone  "
-                    android:fontFamily="@font/poppins"
-                    android:textColor="@color/recycler_view_text"/>
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:padding="12dp">
 
-                <TextView
-                    android:id="@+id/phone_profile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:textSize="18sp"
-                    android:text="Number"
-                    android:fontFamily="@font/poppins"
-                    android:textColor="@color/black"/>
-            </LinearLayout>
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginEnd="16dp"
+                        android:src="@drawable/baseline_local_phone_24" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/poppins"
+                            android:text="Phone  "
+                            android:textColor="@color/recycler_view_text"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/phone_profile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/poppins"
+                            android:text="Number"
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="#e9ecef" />
+
             </LinearLayout>
 
-            <View
+            <LinearLayout
+                android:id="@+id/reset_pass"
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="#e9ecef"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="12dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginTop="10dp"
-            android:id="@+id/reset_pass">
-
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:src="@drawable/baseline_lock_24"
-                android:layout_marginEnd="16dp"/>
-
-        <TextView
-            android:layout_width="220dp"
-            android:layout_height="match_parent"
-            android:text="Reset Password"
-            android:textSize="18sp"
-            android:textColor="@color/black"
-            android:layout_marginEnd="24dp"/>
-
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:src="@drawable/baseline_keyboard_arrow_right_24"
-                android:layout_marginEnd="8dp"
-                android:layout_gravity="end" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="40dp"
-            android:layout_marginBottom="80dp"
-            android:background="@drawable/text_round_edges"
-            android:elevation="5dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:padding="8dp">
-
-            <TextView
-                android:id="@+id/LogOutBtn"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="80dp"
-                android:layout_marginEnd="24dp"
-                android:fontFamily="@font/poppins"
-                android:gravity="center"
-                android:text="Log out"
-                android:textAlignment="center"
-                android:textColor="@color/blue"
-                android:textSize="24sp" />
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:orientation="horizontal"
+                android:padding="12dp">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/baseline_lock_24" />
+
+                <TextView
+                    android:layout_width="220dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="24dp"
+                    android:text="Reset Password"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/baseline_keyboard_arrow_right_24" />
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="60dp"
+                android:gravity="center"
                 android:orientation="horizontal">
 
-                <ImageView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="280dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="20dp"
-                    android:src="@drawable/logout_logo"
-                    android:layout_gravity="center"/>
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/text_round_edges"
+                    android:elevation="5dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:id="@+id/LogOutBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="24dp"
+                        android:fontFamily="@font/poppins"
+                        android:text="Log out"
+                        android:textAlignment="center"
+                        android:textColor="@color/blue"
+                        android:textSize="24sp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/logout_logo" />
+                </LinearLayout>
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/loading_animation_profile"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="10dp"
+                    android:visibility="gone"
+                    app:lottie_loop="true"
+                    app:lottie_rawRes="@raw/loading_circle" />
             </LinearLayout>
         </LinearLayout>
-
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/loading_animation_profile"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="100dp"
-            android:layout_marginEnd="100dp"
-            android:visibility="gone"
-            android:layout_gravity="center"
-            app:lottie_loop="true"
-            app:lottie_rawRes="@raw/loading"
-            android:layout_marginBottom="60dp"/>
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
+</LinearLayout>

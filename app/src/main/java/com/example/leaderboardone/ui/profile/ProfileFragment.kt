@@ -1,5 +1,6 @@
 package com.example.leaderboardone.ui.profile
 
+import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.net.Uri
@@ -18,6 +19,7 @@ import androidx.core.graphics.drawable.toDrawable
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import androidx.lifecycle.VIEW_MODEL_STORE_OWNER_KEY
 import androidx.lifecycle.ViewModelProvider
 import com.example.leaderboardone.ui.Recovery.Reset_Password
 import com.example.leaderboardone.Login_screen
@@ -65,7 +67,9 @@ class NotificationsFragment : Fragment() {
         auth = FirebaseAuth.getInstance()
 
         auth = FirebaseAuth.getInstance()
+        binding.loadingAnimationProfile.visibility = View.GONE
         binding.emailProfile.text = auth.currentUser?.email
+        binding.profilePictureLoadingAnimation.visibility = View.VISIBLE
         //Logic for data-display of Particular logged user
         val docRef = db.collection("COMPS")
         docRef.get()
@@ -78,6 +82,7 @@ class NotificationsFragment : Fragment() {
                             binding.nameProfile.text = allDetails.fullName.toString()
                             binding.rollProfile.text = allDetails.idNumber.toString()
                             binding.phoneProfile.text = allDetails.contactNo.toString()
+                            binding.tvDivProfile.text = allDetails.div.toString()
                         }
                         Log.d("TAG", "name data  ${allDetails.collegeEmail} ")
                     }
@@ -100,7 +105,6 @@ class NotificationsFragment : Fragment() {
             startActivity(Intent(this.context, Login_screen::class.java))
         }
 
-        auth = FirebaseAuth.getInstance()
         // updated photo display
         binding.btnUpload.setOnClickListener {
             image = binding.profilePicFirebase
@@ -113,6 +117,7 @@ class NotificationsFragment : Fragment() {
         storageRefImg.getFile(localFileImg).addOnSuccessListener {
             val bitmap = BitmapFactory.decodeFile(localFileImg.absolutePath)
             binding.profilePicFirebase.setImageBitmap(bitmap)
+            binding.profilePictureLoadingAnimation.visibility = View.GONE
         }
         return root
     }
@@ -127,9 +132,9 @@ class NotificationsFragment : Fragment() {
     @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 1) {
-            image.setImageURI(data?.data)
-            uploadImagetoFB(data?.data!!)
+        if (requestCode == 1 && data!=null && resultCode == RESULT_OK) {
+            image.setImageURI(data.data)
+            uploadImagetoFB(data.data!!)
         }
     }
 
@@ -149,6 +154,6 @@ class NotificationsFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
+        _binding != null
     }
 }

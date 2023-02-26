@@ -1,35 +1,34 @@
-package com.example.leaderboardone
+package com.example.leaderboardone.ui.forms
 
 import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import com.example.leaderboardone.Model.Url
+import androidx.appcompat.app.AppCompatActivity
+import com.example.leaderboardone.R
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
-class FormView_screen : AppCompatActivity() {
 
+class FormScreen2 : AppCompatActivity()  {
     private var db = Firebase.firestore
 
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_form_view_screen)
-
+        setContentView(R.layout.activity_form_screen2)
 
         // Logic for WebView And Form
-        val docRef = db.collection("FORM_LINK")
-        docRef.get()
+        val docRef2 = db.collection("FORM_LINK2")
+        docRef2.get()
             .addOnSuccessListener { document ->
                 if (document != null) {
                     for (all in document){
                         val allDetails = all.toObject<Url>()
-                        var UrlString = allDetails.EVENT_FORM.toString()
-                        val myWebView: WebView = findViewById(R.id.webView)
+                        val UrlString2 = allDetails.EVENT_FORM2.toString()
+                        val myWebView: WebView = findViewById(R.id.webView2)
                         myWebView.settings.loadsImagesAutomatically = true
                         myWebView.settings.javaScriptEnabled = true
                         myWebView.scrollBarSize = View.SCROLLBARS_INSIDE_OVERLAY
@@ -42,7 +41,7 @@ class FormView_screen : AppCompatActivity() {
                                 return true
                             }
                         }
-                        myWebView.loadUrl(UrlString)
+                        myWebView.loadUrl(UrlString2)
                     }
                 } else {
                     Log.d("TAG", "No such document")
@@ -52,32 +51,4 @@ class FormView_screen : AppCompatActivity() {
                 Log.d("TAG", "get failed with ", exception)
             }
     }
-//    override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
-//        if (event.action == KeyEvent.ACTION_DOWN) {
-//            if (keyCode == KeyEvent.KEYCODE_BACK) {
-//                if (myWebView.canGoBack()) {
-//                    myWebView.goBack()
-//                } else {
-//                    showToastToExit()
-//                }
-//                return true
-//            }
-//        }
-//        return super.onKeyDown(keyCode, event)
-//    }
-//    private fun showToastToExit() {
-//        when {
-//            doubleBackToExitPressedOnce -> {
-//                onBackPressed()
-//            }
-//            else -> {
-//                doubleBackToExitPressedOnce = true
-//                showToast("Redirecting to the previous Page")
-//                Handler(Looper.myLooper()!!).postDelayed({ doubleBackToExitPressedOnce = false }, 2000)
-//            }
-//        }
-//    }
-//    private fun showToast(message: String) {
-//        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-//    }
 }

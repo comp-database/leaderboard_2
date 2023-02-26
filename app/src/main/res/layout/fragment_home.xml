@@ -55,11 +55,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="50dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         app:cardCornerRadius="16dp"
         android:background="@color/white"
+        app:cardElevation="8dp"
         android:padding="8dp">
 
         <LinearLayout
@@ -80,20 +81,37 @@
                     android:layout_height="wrap_content">
 
                     <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/profile_pic_home_firebase"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:src="@drawable/download"
+                        android:padding="4dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/home_picture_loading_animation"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        android:visibility="gone"
+                        app:lottie_rawRes="@raw/circular_loading_animation_2" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="4dp">
 
                     <TextView
                         android:id="@+id/nameText"
@@ -101,18 +119,18 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins"
                         android:hint="FULL NAME"
-                        android:padding="1dp"
                         android:textColor="@color/recycler_view_text"
-                        android:textSize="32sp" />
+                        android:textSize="28sp" />
 
                     <TextView
+                        android:id="@+id/tv_div"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins"
-                        android:hint="SE COMPS A"
+                        android:text="SE COMPS A"
                         android:padding="1dp"
-                        android:textColor="@color/recycler_view_text"
-                        android:textSize="20sp"
+                        android:textColor="#6c757d"
+                        android:textSize="16sp"
                         android:layout_marginTop="3dp"/>
 
 
@@ -123,7 +141,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="4dp">
+                android:layout_marginTop="8dp">
 
                 <ImageView
                     android:layout_width="36dp"

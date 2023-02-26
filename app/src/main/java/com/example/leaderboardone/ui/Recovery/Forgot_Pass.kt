@@ -27,19 +27,27 @@ class Forgot_Pass : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.loadingAnimation.pauseAnimation()
+        binding.tvWrongEmailForgotPass.visibility = View.GONE
+
         binding.evForgotEmail.setOnClickListener {
             binding.tvEmptyFieldForgotPass.visibility = View.GONE
+            binding.loadingCircleAnimation.visibility = View.GONE
+            binding.tvWrongEmailForgotPass.visibility = View.GONE
             binding.loadingAnimation.pauseAnimation()
         }
 
         auth = Firebase.auth
         binding.btnForgotPass.setOnClickListener {
             val email = binding.evForgotEmail.text.toString()
+            binding.loadingCircleAnimation.visibility = View.VISIBLE
+            binding.tvWrongEmailForgotPass.visibility = View.GONE
 
             if (checkUserInput()) {
                 auth.sendPasswordResetEmail(email).addOnCompleteListener {
                     if (it.isSuccessful) {
                         binding.loadingAnimation.playAnimation()
+                        binding.loadingCircleAnimation.visibility = View.GONE
+                        binding.sendSuccessText.visibility = View.VISIBLE
                         binding.loadingAnimation.addAnimatorListener(object : Animator.AnimatorListener{
                             override fun onAnimationStart(animation: Animator) {
 
@@ -60,6 +68,9 @@ class Forgot_Pass : AppCompatActivity() {
                         })
                         binding.loadingAnimation.visibility = View.VISIBLE
                     }
+                }.addOnFailureListener {
+                    binding.loadingCircleAnimation.visibility = View.GONE
+                    binding.tvWrongEmailForgotPass.visibility = View.VISIBLE
                 }
             }
         }
@@ -68,10 +79,13 @@ class Forgot_Pass : AppCompatActivity() {
             val email = binding.evForgotEmail.text.toString()
             if (binding.evForgotEmail.text.toString() == "") {
                 binding.tvEmptyFieldForgotPass.visibility = View.VISIBLE
+                binding.tvWrongEmailForgotPass.visibility = View.GONE
+                binding.loadingCircleAnimation.visibility = View.GONE
                 return false
             }
             if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                 Toast.makeText(this, "Wrong Email Format", Toast.LENGTH_SHORT).show()
+                binding.loadingCircleAnimation.visibility = View.GONE
                 return false
             }
             return true

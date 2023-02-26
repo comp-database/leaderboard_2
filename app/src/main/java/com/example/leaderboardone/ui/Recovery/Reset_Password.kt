@@ -21,7 +21,6 @@ import com.google.firebase.ktx.Firebase
 class Reset_Password : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var binding: ActivityResetPasswordBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reset_password)
@@ -29,19 +28,28 @@ class Reset_Password : AppCompatActivity() {
         binding = ActivityResetPasswordBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        auth = Firebase.auth
         binding.loadingAnimation.pauseAnimation()
+        binding.tvWrongEmailForgotPass.visibility = View.GONE
+
         binding.evResetEmail.setOnClickListener {
             binding.tvEmptyFieldForgotPass.visibility = View.GONE
             binding.loadingAnimation.pauseAnimation()
+            binding.tvWrongEmailForgotPass.visibility = View.GONE
+            binding.loadingCircleAnimation.visibility = View.GONE
         }
+
+        auth = Firebase.auth
         binding.btnResetPass.setOnClickListener {
             val email = binding.evResetEmail.text.toString()
+            binding.loadingCircleAnimation.visibility = View.VISIBLE
+            binding.tvWrongEmailForgotPass.visibility = View.GONE
 
             if(checkUserInput()) {
                 auth.sendPasswordResetEmail(email).addOnCompleteListener {
                     if(it.isSuccessful){
                         binding.loadingAnimation.playAnimation()
+                        binding.loadingCircleAnimation.visibility = View.GONE
+                        binding.sendSuccessTextReset.visibility = View.VISIBLE
                         binding.loadingAnimation.addAnimatorListener(object : Animator.AnimatorListener{
                             override fun onAnimationStart(animation: Animator) {
 
@@ -62,6 +70,9 @@ class Reset_Password : AppCompatActivity() {
                         })
                         binding.loadingAnimation.visibility = View.VISIBLE
                     }
+                }.addOnFailureListener {
+                    binding.loadingCircleAnimation.visibility = View.GONE
+                    binding.tvWrongEmailForgotPass.visibility = View.VISIBLE
                 }
             }
         }
@@ -71,10 +82,13 @@ class Reset_Password : AppCompatActivity() {
         val email = binding.evResetEmail.text.toString()
         if (binding.evResetEmail.text.toString() == "") {
             binding.tvEmptyFieldForgotPass.visibility = View.VISIBLE
+            binding.tvWrongEmailForgotPass.visibility = View.GONE
+            binding.loadingCircleAnimation.visibility = View.GONE
             return false
         }
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             Toast.makeText(this, "Wrong Email Format", Toast.LENGTH_SHORT).show()
+            binding.loadingCircleAnimation.visibility = View.GONE
             return false
         }
         return true
