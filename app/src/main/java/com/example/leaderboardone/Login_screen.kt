@@ -55,7 +55,7 @@ class Login_screen : AppCompatActivity() {
                         val intent = Intent(this, Navigation::class.java)
                         intent.putExtra("Email",binding.email.text.toString())
                         startActivity(intent)
-                        finishActivity(0)
+                        finish()
                     } else {
                         binding.loadingAnimation.visibility = View.GONE
                         binding.loadingAnimation.pauseAnimation()

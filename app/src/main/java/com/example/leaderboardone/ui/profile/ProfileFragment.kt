@@ -1,8 +1,13 @@
 package com.example.leaderboardone.ui.profile
 
 import android.app.Activity.RESULT_OK
+import android.app.AlertDialog
 import android.content.Intent
+import android.content.res.Resources
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -15,6 +20,7 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.toDrawable
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -26,6 +32,7 @@ import com.example.leaderboardone.Login_screen
 import com.example.leaderboardone.Model.StudentDetails
 import com.example.leaderboardone.Navigation
 import com.example.leaderboardone.R
+import com.example.leaderboardone.R.drawable.*
 import com.example.leaderboardone.databinding.ActivityNavigationBinding
 import com.example.leaderboardone.databinding.FragmentProfileBinding
 import com.example.leaderboardone.ui.home.HomeFragment
@@ -100,9 +107,33 @@ class NotificationsFragment : Fragment() {
 
         binding.LogOutBtn.setOnClickListener {
             binding.loadingAnimationProfile.visibility = View.VISIBLE
-            binding.loadingAnimationProfile.playAnimation()
-            auth.signOut()
-            startActivity(Intent(this.context, Login_screen::class.java))
+
+            val builder = AlertDialog.Builder(this.context)
+            //set title for alert dialog
+            builder.setTitle("Logout")
+            //set message for alert dialog
+            builder.setMessage("Do you really want to logout?")
+            builder.setIcon(baseline_cancel_24)
+
+            //performing positive action
+            builder.setPositiveButton("Yes"){dialogInterface, which ->
+                auth.signOut()
+                activity?.finish()
+                startActivity(Intent(this.context, Login_screen::class.java))
+            }
+            //performing cancel action
+            builder.setNeutralButton("Cancel"){dialogInterface , which ->
+                binding.loadingAnimationProfile.visibility = View.GONE
+            }
+            //performing negative action
+            builder.setNegativeButton("No"){dialogInterface, which ->
+                binding.loadingAnimationProfile.visibility = View.GONE
+            }
+            // Create the AlertDialog
+            val alertDialog: AlertDialog = builder.create()
+            // Set other dialog properties
+            alertDialog.setCancelable(false)
+            alertDialog.show()
         }
 
         // updated photo display
@@ -111,13 +142,16 @@ class NotificationsFragment : Fragment() {
             uploadImage(image)
         }
 
-        // image load form selected image via Firebase
+        // image load from selected image via Firebase
         val storageRefImg = FirebaseStorage.getInstance().reference.child(auth.currentUser?.email.toString())
         val localFileImg = File.createTempFile(auth.currentUser?.email.toString(), "jpg")
         storageRefImg.getFile(localFileImg).addOnSuccessListener {
             val bitmap = BitmapFactory.decodeFile(localFileImg.absolutePath)
             binding.profilePicFirebase.setImageBitmap(bitmap)
             binding.profilePictureLoadingAnimation.visibility = View.GONE
+        }.addOnFailureListener {
+            binding.profilePictureLoadingAnimation.visibility = View.GONE
+            binding.profilePicFirebase.setImageResource(download)
         }
         return root
     }

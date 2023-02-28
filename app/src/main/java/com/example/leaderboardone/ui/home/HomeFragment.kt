@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.leaderboardone.FormView_screen
 import com.example.leaderboardone.Model.StudentDetails
+import com.example.leaderboardone.R
 import com.example.leaderboardone.databinding.FragmentHomeBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -84,6 +85,9 @@ class HomeFragment : Fragment() {
             val bitmap = BitmapFactory.decodeFile(localFileImg.absolutePath)
             binding.homePictureLoadingAnimation.visibility = View.GONE
             binding.profilePicHomeFirebase.setImageBitmap(bitmap)
+        }.addOnFailureListener {
+            binding.homePictureLoadingAnimation.visibility = View.GONE
+            binding.profilePicHomeFirebase.setImageResource(R.drawable.download)
         }
 
         eventChangeListener()
